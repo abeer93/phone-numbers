@@ -31,7 +31,7 @@ class PhoneControllerTest extends TestCase
         $response->assertViewHas('countries');
         $response->assertViewHas('phones');
         $response->assertViewHas('filters');
-        $this->assertCount(20, $responseData['phones']->getCollection());
+        $this->assertCount(15, $responseData['phones']->getCollection());
     }
 
     public function testListPhoneNumbersWithFilteringByCountryWillReturnDataSuccessfully()

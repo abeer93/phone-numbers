@@ -6,6 +6,8 @@ use App\Enums\PhoneStateEnum;
 use App\Repositories\CustomerRepository;
 use App\Traits\PhoneTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class FilterPhonesService 
 {
@@ -32,14 +34,12 @@ class FilterPhonesService
         $phones = $this->customerRepo->phonesList($filters);
 
         if(isset($filters['valid_phones'])) {
-            $phonesCollection =  $this->validatePhones($phones->getCollection(), $filters['valid_phones']);
+            $phonesCollection =  $this->validatePhones($phones, $filters['valid_phones']);
         } else {
-            $phonesCollection =  $this->validatePhones($phones->getCollection());
+            $phonesCollection =  $this->validatePhones($phones);
         }
 
-        $phones->setCollection($phonesCollection);
-
-        return $phones;
+        return $this->paginateDatae($phonesCollection);
     }
 
     /**
@@ -60,5 +60,23 @@ class FilterPhonesService
         }
 
         return $phonesCollection;
+    }
+
+    /**
+     * Paginate data
+     * 
+     * @param array|Collection $items
+     * @param int              $perPage
+     * @param int              $page
+     *
+     * @return LengthAwarePaginator
+     */
+    public function paginateDatae($items, $perPage = 15, $page = null)
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page);
     }
 }

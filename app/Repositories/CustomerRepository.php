@@ -3,8 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Customer;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class CustomerRepository extends BaseRepository
@@ -24,9 +23,9 @@ class CustomerRepository extends BaseRepository
      * 
      * @param array $filters
      * @param int   $perPage represent number of objects must returned per page
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return Collection
      */
-    public function phonesList($filters = [], $perPage = 20)
+    public function phonesList($filters = [])
     {
         $phonesQuery = $this->model
                         ->join("countries as c", function ($join) {
@@ -38,6 +37,6 @@ class CustomerRepository extends BaseRepository
             $phonesQuery->where('c.id', (int)$filters['country_id']);
         }
 
-        return $phonesQuery->paginate($perPage);
+        return $phonesQuery->get();
     }
 }

@@ -38,14 +38,13 @@
   ```
     npm install
     npm run dev
-    npm run dev
   ```
 8. Run Servers
   ```
     php artisan serve
   ```
 8. Run test cases
-    before running next commands please make sure fill all databse test variableswhcich begin with DB_TEST_ in .env file.
+    before running next commands please make sure fill all databse test variables which begin with DB_TEST_ in .env file.
 
   ```
     php artisan optimize:clear

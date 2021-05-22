@@ -70,7 +70,7 @@
                     </div>
                     <div class="card-footer p-4">
                       <div class="row">
-                          {{ $phones->links("pagination::bootstrap-4") }}
+                          {{ $phones->appends($filters)->links("pagination::bootstrap-4") }}
                       </div>
                     </div>
                 </div>
