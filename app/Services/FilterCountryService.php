@@ -12,9 +12,7 @@ class FilterCountryService
      * @param CountryRepository $countryRepo instance of country repository
      */
     public function __construct(public CountryRepository $countryRepo)
-    {
-        $this->countryRepo = $countryRepo;
-    }
+    {}
 
     /**
      * Filter countries

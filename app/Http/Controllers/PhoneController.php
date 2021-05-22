@@ -14,13 +14,8 @@ class PhoneController extends Controller
      * @param FilterPhonesService   $phoneService instance of filter phones service
      * @param FilterCountryService  $countryService instance of list countries service
      */
-    public function __construct(
-                                public FilterPhonesService $phoneService,
-                                public FilterCountryService $countryService
-                            ) {
-        $this->phoneService = $phoneService;
-        $this->countryService = $countryService;
-    }
+    public function __construct(public FilterPhonesService $phoneService, public FilterCountryService $countryService) 
+    {}
 
     /**
      * Get phone numbers list

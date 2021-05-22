@@ -14,9 +14,7 @@ class BaseRepository implements RepositoryInterface
      * @param Model $model instance of Model @see Illuminate\Database\Eloquent\Model
      */
     public function __construct(public Model $model)
-    {
-        $this->model = $model;
-    }
+    {}
 
     public function create($credential) :Model
     {

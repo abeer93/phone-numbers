@@ -19,9 +19,7 @@ class FilterPhonesService
      * @param CustomerRepository $customerRepo instance of customer repository
      */
     public function __construct(public CustomerRepository $customerRepo)
-    {
-        $this->customerRepo = $customerRepo;
-    }
+    {}
 
     /**
      * Filter phone numbers list
